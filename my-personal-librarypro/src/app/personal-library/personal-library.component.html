@@ -1,0 +1,56 @@
+<div class="library-container">
+  <!-- Left Sidebar -->
+  <aside class="sidebar left">
+    <!-- Sidebar content like a shelf image -->
+     <!-- Profile Picture with Frame -->
+     <div class="profile-frame-container">
+        <img src="/assets/frame.png" alt="Profile Frame" class="profile-frame" />
+        <img
+          *ngIf="userProfileImageUrl"
+          [src]="userProfileImageUrl"
+          alt="User Profile"
+          class="profile-picture"
+        />
+      </div>
+  </aside>
+
+  <!-- Middle Content Area -->
+  <section class="book-display">
+    <div class="header-actions">
+      <button class="add-book-btn" (click)="openAddBookModal()">Add Book</button>
+    </div>
+
+    <!-- Library Title -->
+    <img src="/assets/shok.png" alt="Library Image" class="library-image" />
+
+    <h1 class="library-title">My Antique Library</h1>
+    <input type="text" [(ngModel)]="searchTerm" (input)="searchBooks()" placeholder="Search books..." class="search-input">
+
+    <!-- Add Book Button -->
+
+    <!-- Books Grid -->
+    <div class="books-grid">
+      <!-- Use *ngFor directive to repeat the book-card for each book -->
+      <div
+      class="book-card"
+      *ngFor="let book of books"
+      tabindex="0"
+      (click)="openBookDetailModal(book)"
+      (keyup.enter)="openBookDetailModal(book)"
+      (keyup.space)="openBookDetailModal(book)"
+    >
+      <img [src]="book.image_url" [alt]="book.title" class="book-cover" />
+      <h3 class="book-title">{{ book.title }}</h3>
+      <p class="author-name">{{ book.author }}</p>
+      <p class="book-note">{{ book.note }}</p>
+      <p class="book-last-modified">{{ book.last_modified | date }}</p>
+    </div>
+
+    </div>
+  </section>
+
+  <!-- Right Sidebar -->
+  <aside class="sidebar right">
+    <!-- Sidebar content like a shelf image -->
+  </aside>
+</div>

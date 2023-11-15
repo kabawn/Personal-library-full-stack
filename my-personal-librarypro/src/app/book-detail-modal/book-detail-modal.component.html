@@ -1,0 +1,173 @@
+<div class="modal-header antique-modal-header">
+  <h5 class="modal-title">Book Details</h5>
+  <button
+  type="button"
+  class="close"
+  aria-label="Close"
+  (click)="activeModal.dismiss('Cross click')"
+  (keyup.enter)="activeModal.dismiss('Cross click')"
+  (keyup.space)="activeModal.dismiss('Cross click')"
+  tabindex="0"
+>
+  &times;
+</button>
+
+</div>
+
+
+<div class="modal-body antique-modal-body" *ngIf="book">
+  <ng-container *ngIf="!isEditMode; else editBookForm">
+    <div class="book-details-container">
+      <div class="book-cover-container">
+        <img [src]="book.image_url" [alt]="book.title" class="book-cover" />
+      </div>
+      <div class="book-text-content">
+        <h3 class="book-title">{{ book.title }}</h3>
+        <p class="book-author">by {{ book.author }}</p>
+        <p class="book-description">Description:</p>
+        <p class="book-note">{{ book.note }}</p>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #editBookForm>
+    <form (ngSubmit)="submitUpdate()" #updateBookForm="ngForm">
+      <!-- Title Field -->
+      <div class="form-group mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="book.title"
+          name="title"
+          required
+        />
+      </div>
+
+      <!-- Author Field -->
+      <div class="form-group mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input
+          type="text"
+          class="form-control"
+          id="author"
+          [(ngModel)]="book.author"
+          name="author"
+          required
+        />
+      </div>
+
+      <!-- Note Field -->
+      <div class="form-group mb-3">
+        <label for="note" class="form-label">Note</label>
+        <textarea
+          class="form-control"
+          id="note"
+          rows="3"
+          [(ngModel)]="book.note"
+          name="note"
+        ></textarea>
+      </div>
+
+      <!-- Image Field -->
+      <div class="form-group mb-3">
+        <label for="image" class="form-label">Book Cover Image</label>
+        <input
+          type="file"
+          class="form-control-file"
+          id="image"
+          (change)="onFileSelect($event)"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success text-black">
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </ng-template>
+</div>
+
+<h3 class="titleof">Reviews</h3>
+<div *ngIf="book?.reviews?.length">
+  <ul class="review-list">
+    <li *ngFor="let review of book?.reviews" class="review-item">
+      <div class="rating-stars">
+        <span
+          *ngFor="let star of [1, 2, 3, 4, 5]"
+          class="star"
+          [class.filled]="star <= review.rating"
+        >
+          &#9733;
+          <!-- Star character -->
+        </span>
+      </div>
+      <p class="review-text">{{ review.review }}</p>
+    </li>
+  </ul>
+</div>
+
+<!-- Review and Rating Section -->
+<div class="review-section">
+  <h4 class="review-title">Add a Review</h4>
+  <div class="rating-container">
+    <label for="rating">Rating:</label>
+    <div *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+        <span
+        class="star"
+        role="button"
+        aria-label="Set rating"
+        [attr.aria-label]="'Rate as ' + (i + 1) + ' stars'"
+        [class.empty]="i >= newReview.rating"
+        (click)="setRating(i + 1)"
+        (keydown.enter)="setRating(i + 1)"
+        (keydown.space)="setRating(i + 1)"
+        tabindex="0"
+      >&#9733;</span>
+      
+      
+      <!-- This is the HTML entity for a star -->
+    </div>
+  </div>
+  <div class="review-container">
+    <label for="review">Review:</label>
+    <textarea
+      id="review"
+      [(ngModel)]="newReview.review"
+      name="review"
+      rows="3"
+      placeholder="Write your review..."
+    ></textarea>
+  </div>
+  <button class="btn btn-primary" (click)="submitReview()">
+    Submit Review
+  </button>
+</div>
+
+<div class="modal-footer antique-modal-footer">
+  <button
+    *ngIf="!isEditMode"
+    type="button"
+    class="btn btn-primary text-black"
+    (click)="toggleEditMode(true)"
+  >
+    Update
+  </button>
+  <button
+    *ngIf="isEditMode"
+    type="button"
+    class="btn btn-success text-black"
+    (click)="submitUpdate()"
+  >
+    Save Changes
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger text-black"
+    (click)="deleteBook()"
+  >
+    Delete
+  </button>
+</div>

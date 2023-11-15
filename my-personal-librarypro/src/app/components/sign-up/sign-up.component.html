@@ -1,0 +1,116 @@
+<!-- signUp.component.html -->
+
+<div class="signup-container">
+  <!-- Bookshelf animation containers -->
+  <div class="bookshelf" [class.open]="shelfOpen">
+    <div
+      class="shelf left-shelf"
+      style="background-image: url('/assets/left.png')"
+    ></div>
+    <div
+      class="shelf right-shelf"
+      style="background-image: url('/assets/right.png')"
+    ></div>
+  </div>
+  <div *ngIf="displayForm" class="form-container">
+    <!-- The form will be shown when the shelves open -->
+    <div class="signup-form" [class.visible]="shelfOpen">
+      <div class="flex justify-center items-center">
+        <div class="bg-white rounded-lg shadow-xl">
+          <div
+            class="modal-header p-4 border-b-2 border-gray-100 flex justify-between items-center"
+          >
+            <h5 class="modal-title text-lg font-semibold">New User Sign Up</h5>
+            <button
+              type="button"
+              class="text-gray-400 hover:text-gray-600"
+              aria-label="Close"
+              (click)="toggleShelf()"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-6">
+            <form (ngSubmit)="submitForm()" class="space-y-4">
+              <div class="form-group">
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  id="name"
+                  [(ngModel)]="user.name"
+                  name="name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="bio" class="block text-sm font-medium text-gray-700"
+                  >Bio</label
+                >
+                <textarea
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  id="bio"
+                  [(ngModel)]="user.bio"
+                  name="bio"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label
+                  for="favoriteGenre"
+                  class="block text-sm font-medium text-gray-700"
+                  >Favorite Genre</label
+                >
+                <input
+                  type="text"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  id="favoriteGenre"
+                  [(ngModel)]="user.favorite_genre"
+                  name="favorite_genre"
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  for="profilePic"
+                  class="block text-sm font-medium text-gray-700"
+                  >Profile Picture</label
+                >
+                <input
+                  type="file"
+                  class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                  id="profilePic"
+                  (change)="onFileSelect($event)"
+                />
+              </div>
+
+              <div class="flex justify-end pt-2">
+                <button
+                  type="submit"
+                  class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                >
+                  Get Unique ID
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Box to display the unique ID -->
+  <div *ngIf="displayUniqueIdBox" class="unique-id-box">
+    <p class="unique-id-message">
+      Hey reader, from the old world, this is your unique code:
+    </p>
+    <p class="unique-id">{{ uniqueId }}</p>
+    <button (click)="hideUniqueIdBox()">Enter in peace</button>
+  </div>
+  <!-- Button to trigger the shelf opening animation -->
+  <button (click)="toggleShelf()" class="open-shelf-btn">
+    Get a Unique ID
+  </button>
+</div>

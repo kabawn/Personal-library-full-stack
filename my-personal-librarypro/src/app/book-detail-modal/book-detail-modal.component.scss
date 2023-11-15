@@ -1,0 +1,169 @@
+.antique-modal-header {
+  background-color: #f4f1ea;
+  color: #5c5346;
+  font-family: "Times New Roman", serif;
+  // Additional styles for the header
+}
+
+.antique-modal-body {
+  background-color: #f4f1ea;
+  color: #5c5346;
+  font-family: "Times New Roman", serif;
+  // Additional styles for the body
+}
+.titleof {
+    margin-left: 10px;
+    padding: 10px;
+  }
+.review-list {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 30px;
+
+  
+
+  .review-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc; // Separator between reviews
+
+    .rating-stars {
+      .star {
+        display: inline-block;
+        color: #d3a625; // Gold color for stars
+        margin-right: 2px;
+        &.filled {
+          color: #ffc107; // Filled star color
+        }
+        &:not(.filled) {
+          color: #e4e5e9; // Unfilled star color
+        }
+      }
+    }
+
+    .review-text {
+      margin-top: 5px;
+      font-style: italic;
+      color: #333;
+    }
+  }
+}
+
+.review-section {
+  margin-top: 20px;
+
+  .review-title {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-family: "Times New Roman", serif;
+    padding: 10px;
+  }
+
+  .rating-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    .star {
+      cursor: pointer;
+      font-size: 24px; // Size of the star
+      color: #d3a625; // Gold color for filled star
+      margin-right: 5px; // Spacing between stars
+
+      &.empty {
+        color: #ccc; // Grey color for empty star
+      }
+
+      &:hover {
+        color: #f0e68c; // Lighter gold color on hover
+      }
+    }
+  }
+
+  .review-container {
+    margin-top: 10px;
+    padding: 10px;
+
+    textarea {
+      width: 100%;
+      border: 1px solid #8a7f70; // Border to match the theme
+      border-radius: 4px; // Slightly rounded corners for the textarea
+      padding: 10px; // Padding inside the textarea
+      font-family: "Times New Roman", serif;
+    }
+  }
+
+  button {
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #d3a625; // Button color to match the star rating
+    color: white;
+    font-family: "Times New Roman", serif;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f0e68c; // Lighter gold color on hover
+    }
+  }
+}
+
+.book-details-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+
+  .book-cover-container {
+    flex-shrink: 0;
+    width: 50%; // Adjust as needed
+    // Additional styles for the book cover container
+  }
+
+  .book-cover {
+    width: 100%;
+    height: auto;
+    border: 4px solid #8a7f70;
+    // Additional styles for the book cover
+  }
+
+  .book-text-content {
+    flex-grow: 1;
+    // Additional styles for the text content container
+  }
+
+  .book-title {
+    // Styles for the book title
+  }
+
+  .book-author {
+    // Styles for the author line
+  }
+
+  .book-description {
+    // Styles for the description label
+  }
+
+  .book-note {
+    // Styles for the note text
+  }
+}
+
+.antique-modal-footer {
+  background-color: #f4f1ea;
+  // Additional styles for the footer
+}
+
+@media (max-width: 768px) {
+  .book-details-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-cover-container {
+    width: 100%;
+  }
+}

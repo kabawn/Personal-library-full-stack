@@ -1,0 +1,39 @@
+<!-- Main container with background image -->
+<div class="min-h-screen bg-cover bg-center" style="background-image: url('/assets/librarydark.png');">
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white p-20">
+      <div class="container mx-auto text-center">
+        <h1 class="text-5xl font-bold mb-6">Welcome to My Personal Library</h1>
+        <p class="text-xl mb-8">Discover and manage your book collection with ease.</p>
+      </div>
+    </section>
+  
+  <!-- Unique ID Entry Section -->
+<section class="id-entry-section my-10">
+    <div class="container mx-auto text-center">
+      <label for="uniqueID" class="block text-white text-lg mb-2">Enter Your Unique ID:</label>
+      <input id="uniqueID" type="text" [(ngModel)]="enteredUniqueId" placeholder="12345" class="border p-2 rounded mb-4" name="uniqueID">
+      <button (click)="enterLibrary()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Enter Library
+      </button>
+    </div>
+  </section>
+  
+   <!-- New User Section -->
+<section class="new-user-section my-10">
+    <div class="container mx-auto text-center">
+      <p class="mb-4 text-white">First time here?</p>
+      <button (click)="openSignUpModal()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Get a Unique ID
+      </button>
+    </div>
+  </section>
+  
+  </div>
+  
+  <!-- Footer Section -->
+  <footer class="footer-section bg-gray-100 p-4 text-center">
+    <p>Created for showcasing my personal library project.</p>
+  </footer>
+  

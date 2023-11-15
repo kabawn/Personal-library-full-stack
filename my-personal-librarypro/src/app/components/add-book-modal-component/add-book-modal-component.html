@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h5 class="modal-title">Add New Book</h5>
+  <button type="button" class="btn-close text-black" aria-label="Close" (click)="activeModal.dismiss('Cross click')">X</button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="submitBook()" #addBookForm="ngForm">
+    <!-- Title Field -->
+    <div class="form-group mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" [(ngModel)]="book.title" name="title" required>
+    </div>
+    
+    <!-- Author Field -->
+    <div class="form-group mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input type="text" class="form-control" id="author" [(ngModel)]="book.author" name="author" required>
+    </div>
+    
+    <!-- Note Field -->
+    <div class="form-group mb-3">
+      <label for="note" class="form-label">Note</label>
+      <textarea class="form-control" id="note" rows="3" [(ngModel)]="book.note" name="note"></textarea>
+    </div>
+
+    <!-- Image Field -->
+    <div class="form-group mb-3">
+      <label for="image" class="form-label">Book Cover Image</label>
+      <input type="file" class="form-control-file" id="image" (change)="onFileSelect($event)">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary text-black">Add Book</button>
+    </div>
+  </form>
+</div>
